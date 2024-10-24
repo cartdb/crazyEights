@@ -80,5 +80,5 @@ while running:
     for entry in range(len(player2)):
         cardDraw(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2)
     pygame.display.flip()
-    clock.tick(1)
+    clock.tick(60)
 pygame.quit()
