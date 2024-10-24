@@ -73,6 +73,7 @@ while running:
             if len(player1) != 0 and mousex >= 0 and mousex <= screen_width * 0.1 and mousey >= screen_height * 0.3 and mousey <= screen_height * 0.675 and pressed == True:
                 player1.append(deck[0])
                 del deck[:1]
+                pressed = False
         except:
             pass
     elif turn == False and len(player1) > 0 and len(player2) > 0:
