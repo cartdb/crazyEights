@@ -57,7 +57,6 @@ while running:
     random.shuffle(deck2)
     for entrys in range(len(deck2)):
         deck.append(deck2[entrys])
-    facedown = 0
     facedown2 = 0
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -69,9 +68,7 @@ while running:
             card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1)
             if len(player1) != length:
                 turn = False
-                facedown = 0
                 break
-            facedown += 1
         try:
             if len(player1) != 0 and mousex >= 0 and mousex <= screen_width * 0.1 and mousey >= screen_height * 0.3 and mousey <= screen_height * 0.675 and pressed == True:
                 player1.append(deck[0])
