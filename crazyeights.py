@@ -2,6 +2,9 @@ import pyautogui
 import pygame
 import random
 from cards import card
+from decks import cardDeck
+from draw import cardDraw
+from pygame.locals import *
 pygame.init()
 screen_width, screen_height = pyautogui.size()
 screen_height = screen_height - 60
@@ -21,17 +24,61 @@ while count < 10:
     player2.append(deck[count])
     count += 1
 del deck[:10]
+while "8" in deck[0] or "b" in deck[0] or "r" in deck[0]:
+    random.shuffle(deck)
+currentCard = []
+currentCard.append(deck[0])
+del deck[:1]
+turn = True
 while running:
-    if len(deck) < 10:
-        break
+    deck2 = []
+    for entrys in range(len(cards)):
+        deck2.append(cards[entrys])
+    random.shuffle(deck2)
+    for entrys in range(len(deck2)):
+        deck.append(deck2[entrys])
+    facedown = 0
+    facedown2 = 0
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
     screen.fill("white")
+    if turn == True:
+        for entry in range(len(player1)):
+            length = len(player1)
+            card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1)
+            if len(player1) != length:
+                turn = False
+                facedown = 0
+                break
+            facedown += 1
+        try:
+            if len(player1) != 0 and facedown == length:
+                player1.append(deck[0])
+                del deck[:1]
+        except:
+            pass
+    if turn == False:
+        for entry in range(len(player2)):
+            length = len(player2)
+            card(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2)
+            if len(player2) != length:
+                turn = True
+                facedown2 = 0
+                break
+            facedown2 += 1
+        try:
+            if len(player2) != 0 and facedown2 == length:
+                player2.append(deck[0])
+                del deck[:1]
+        except:
+            pass
+    card(currentCard[len(currentCard) - 1], 2, -1, cards, screen_width, screen_height, screen)
+    cardDeck(screen_width, screen_height, screen)
     for entry in range(len(player1)):
-        card(player1[entry], 1, entry, cards, screen_width, screen_height, screen)
+        cardDraw(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1)
     for entry in range(len(player2)):
-        card(player2[entry], 0, entry, cards, screen_width, screen_height, screen)
+        cardDraw(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(1)
 pygame.quit()
