@@ -173,6 +173,14 @@ def cardDraw(type, player, num, cards, screen_width, screen_height, screen, curr
         cardImg = bj
     elif cards[53] == type:
         cardImg = rj
+    elif type == 'c':
+        cardImg = c8
+    elif type == 'd':
+        cardImg = d8
+    elif type == 'h':
+        cardImg = h8
+    elif type == 's':
+        cardImg = s8
     if player == 0:
         y = 0
     elif player == 1:
@@ -183,6 +191,8 @@ def cardDraw(type, player, num, cards, screen_width, screen_height, screen, curr
         x = screen_width * 0.1
     else:
         x = (screen_width / len(arr)) * num
+    if player == 0 or facedown == True and num != -1:
+        cardImg = backside
     if num != -1:
         if len(arr) != 0:
             cardImg = pygame.transform.scale(cardImg, (screen_width / len(arr), screen_height * 0.3))

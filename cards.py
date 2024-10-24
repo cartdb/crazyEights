@@ -56,6 +56,8 @@ As = pygame.image.load("png/ace_of_spades.png")
 bj = pygame.image.load("png/black_joker.png")
 rj = pygame.image.load("png/red_joker.png")
 def card(type, player, num, cards, screen_width, screen_height, screen, currentCard=[], arr=[]):
+    (mousex, mousey) = pygame.mouse.get_pos()
+    pressed = pygame.mouse.get_pressed()[0]
     facedown = True
     if player != 2 and num != -1:
         types = list(type)
@@ -192,7 +194,18 @@ def card(type, player, num, cards, screen_width, screen_height, screen, currentC
         x = screen_width * 0.1
     else:
         x = (screen_width / len(arr)) * num
-    if facedown == False and player != 2:
+    if player == 0 or facedown == True and num != -1:
+        cardImg = backside
+    if facedown == False and player == 0:
+        x = screen_width * 0.1
+        y = screen_height * 0.3
+        num = -1
+        type2 = type
+        if type == 'rj' or type == 'bj' or '8' in type:
+            type = func(arr)
+        currentCard.append(type)
+        arr.remove(type2)
+    elif facedown == False and player == 1 and pressed == True and mousex >= x and mousex <= x + (screen_width / len(arr)) and mousey >= y and mousey <= y + (screen_height * 0.3):
         x = screen_width * 0.1
         y = screen_height * 0.3
         num = -1
