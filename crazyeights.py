@@ -1,9 +1,8 @@
 import pyautogui
 import pygame
 import random
-from cards import card
-from decks import cardDeck
-from draw import cardDraw
+from func import card
+from func import cardDeck
 pygame.init()
 screen_width, screen_height = pyautogui.size()
 screen_height = screen_height - 60
@@ -94,9 +93,9 @@ while running:
     card(currentCard[len(currentCard) - 1], 2, -1, cards, screen_width, screen_height, screen)
     cardDeck(screen_width, screen_height, screen)
     for entry in range(len(player1)):
-        cardDraw(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1)
+        card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1, "draw")
     for entry in range(len(player2)):
-        cardDraw(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2)
+        card(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2, "draw")
     pygame.display.flip()
     clock.tick(10)
 pygame.quit()
