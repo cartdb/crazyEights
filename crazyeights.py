@@ -64,7 +64,7 @@ while running:
     if turn == True and len(player1) > 0 and len(player2) > 0:
         for entry in range(len(player1)):
             length = len(player1)
-            card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1)
+            card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1, "crazyeights")
             if len(player1) != length:
                 turn = False
                 break
@@ -78,7 +78,7 @@ while running:
     elif turn == False and len(player1) > 0 and len(player2) > 0:
         for entry in range(len(player2)):
             length = len(player2)
-            card(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2)
+            card(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2, "crazyeights")
             if len(player2) != length:
                 turn = True
                 facedown2 = 0
@@ -93,9 +93,9 @@ while running:
     card(currentCard[len(currentCard) - 1], 2, -1, cards, screen_width, screen_height, screen)
     cardDeck(screen_width, screen_height, screen)
     for entry in range(len(player1)):
-        card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1, "draw")
+        card(player1[entry], 1, entry, cards, screen_width, screen_height, screen, currentCard, player1)
     for entry in range(len(player2)):
-        card(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2, "draw")
+        card(player2[entry], 0, entry, cards, screen_width, screen_height, screen, currentCard, player2)
     pygame.display.flip()
     clock.tick(10)
 pygame.quit()

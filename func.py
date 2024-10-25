@@ -225,7 +225,7 @@ def card(type, player, num, cards, screen_width, screen_height, screen, currentC
         x = (screen_width / len(arr)) * num
     if player == 0 or facedown == True and num != -1:
         cardImg = backside
-    if draw != "draw":
+    if draw == "crazyeights":
         if facedown == False and player == 0:
             x = screen_width * 0.1
             y = screen_height * 0.3
